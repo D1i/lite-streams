@@ -45,7 +45,7 @@ export class ProcessorCore {
     }
 
     runTick(priority: "Critical" | "Core" | "Main" | "Background") {
-        new Promise<void>((resolve, reject) => {
+        new Promise<void>(() => {
             let doneProcesses = 0;
             const startTime = Date.now();
             this[`flow${priority}`].some(process => {
@@ -62,17 +62,17 @@ export class ProcessorCore {
     }
 
     async runProcesses() {
-        await new Promise(() => {
-            this.runTick("Critical");
+        await new Promise((resolve) => {
+            resolve(this.runTick("Critical"));
         });
-        await new Promise(() => {
-            this.runTick("Core");
+        await new Promise((resolve) => {
+            resolve(this.runTick("Core"));
         });
-        await new Promise(() => {
-            this.runTick("Core");
+        await new Promise((resolve) => {
+            resolve(this.runTick("Main"));
         });
-        await new Promise(() => {
-            this.runTick("Main");
+        await new Promise((resolve) => {
+            resolve(this.runTick("Background"));
         });
 
         if (
