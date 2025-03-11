@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Gotic-Regular'; /* Исправлено на корректный регистр */
+    src: url(fonts/Gotic-Regular.ttf) format('truetype'); /* Исправлен синтаксис format */
+    font-weight: normal;
+    font-style: normal;
+}
+
+.inventory {
+    font-family: 'Gotic-Regular', Arial, sans-serif; /* Исправлено название шрифта и добавлен универсальный шрифт */
+}
